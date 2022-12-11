@@ -8,7 +8,7 @@ const Public = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="bg-lightGray">
         {navigation.state === 'loading' && (
           <div className="text-xl text-red-600">Cargando</div>
         )}

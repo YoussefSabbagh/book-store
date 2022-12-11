@@ -9,7 +9,7 @@ const CartSumary = () => {
     <div className="fixed bottom-0 bg-white w-full px-5 py-2 grid items-center">
       <div className="flex items-center justify-between">
         <h1 className="text-base font-semibold uppercase">SubTotal</h1>
-        <h1 className="text-sm rounded bg-theme-cart text-slate-100 px-1 py-0.5">
+        <h1 className="text-sm rounded bg-darkBlue text-slate-100 px-1 py-0.5">
           ${totalAmount}
         </h1>
       </div>
@@ -17,7 +17,7 @@ const CartSumary = () => {
         <p className="text-sm font-medium text-center">
           Taxes and Shipping Will Calculate At Shipping
         </p>
-        <button type="button" className="button-theme bg-theme-cart text-white">
+        <button type="button" className="button-theme bg-darkBlue text-white">
           Check Out
         </button>
       </div>

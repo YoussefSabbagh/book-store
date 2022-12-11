@@ -1,13 +1,15 @@
 import { useLoaderData } from 'react-router-dom';
 import BookCard from '../../components/BookCard';
+import Cart from '../../components/Cart';
 
 const Books = () => {
   const { books } = useLoaderData();
 
   return (
     <div className="text-center">
+      <Cart />
       <h1 className=" text-4xl">BOOKS </h1>
-      <div className="p-10 gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8">
+      <div className="p-10 gap-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-8">
         {books.books.map((book) => {
           return <BookCard key={book.isbn13} book={book} />;
         })}
