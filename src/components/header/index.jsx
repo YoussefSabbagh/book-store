@@ -1,17 +1,32 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useKeycloak } from '@react-keycloak/web';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { FaBars, FaTimes } from 'react-icons/fa';
+import { FaBars, FaSearch, FaShoppingCart, FaTimes } from 'react-icons/fa';
 
 import logo from '../../assets/image/logos/logo.png';
+import { selectTotalQTY, setOpenCart } from '../../features/CartSlice';
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const totalQTY = useSelector(selectTotalQTY);
+
   const { keycloak } = useKeycloak();
   const [showMobileMenu, SetShowMobileMenu] = useState(false);
 
+  // console.log('====profile=====', keycloak.tokenParsed);
+
   const handleShowToggleMenu = () => {
     SetShowMobileMenu(!showMobileMenu);
+  };
+
+  const onCartToggle = () => {
+    dispatch(
+      setOpenCart({
+        cartState: true,
+      })
+    );
   };
 
   return (
@@ -34,7 +49,7 @@ const Header = () => {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                isActive ? 'text-primary' : ' text-myWhite hover:text-primary'
+                isActive ? 'text-primary' : ' text-darkBlue hover:text-primary'
               }
             >
               Home
@@ -53,19 +68,7 @@ const Header = () => {
               Books
             </NavLink>
           </li>
-          <li
-            className="text-center mt-8 md:mt-0 text-3xl md:text-base "
-            onClick={handleShowToggleMenu}
-          >
-            <NavLink
-              to="/users/:user_id"
-              className={({ isActive }) =>
-                isActive ? 'text-primary' : ' text-darkBlue hover:text-primary'
-              }
-            >
-              Profile
-            </NavLink>{' '}
-          </li>
+
           <li
             className="text-center mt-8 md:mt-0 text-3xl md:text-base "
             onClick={handleShowToggleMenu}
@@ -92,13 +95,44 @@ const Header = () => {
                 )}
 
                 {!!keycloak.authenticated && (
-                  <button
-                    type="button"
-                    className="text-blue-800"
-                    onClick={() => keycloak.logout()}
-                  >
-                    Logout ({keycloak.tokenParsed.preferred_username})
-                  </button>
+                  <>
+                    <div className="flex gap-4 text-[#777] cursor-pointer">
+                      <FaSearch />
+
+                      {/* <div className="relative" onClick={() => setOpen(!open)}> */}
+                      <div className="relative" onClick={onCartToggle}>
+                        <FaShoppingCart />
+                        <span className="text-xs w-4 h-4 rounded-full bg-[#2879fe] text-myWhite absolute -right-[10px] -top-2 flex justify-center items-center">
+                          {totalQTY}
+                        </span>
+                      </div>
+
+                      <li
+                        className="text-center mt-8 md:mt-0 text-3xl md:text-base "
+                        onClick={handleShowToggleMenu}
+                      >
+                        <NavLink
+                          to={`/users/${keycloak.tokenParsed.given_name}`}
+                        >
+                          <div className="h-5 w-5">
+                            <img
+                              className="w-full h-full rounded-full"
+                              src="https://lh3.googleusercontent.com/a/AEdFTp7DfU-a9BJHvp5n1h09gzHBpm42xLBwRP8FL08O=s96-c"
+                              alt={keycloak.tokenParsed.given_name}
+                            />
+                          </div>
+                        </NavLink>{' '}
+                      </li>
+
+                      <button
+                        type="button"
+                        className="text-blue-800"
+                        onClick={() => keycloak.logout()}
+                      >
+                        Logout
+                      </button>
+                    </div>
+                  </>
                 )}
               </div>
             </div>

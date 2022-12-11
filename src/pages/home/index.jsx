@@ -11,6 +11,7 @@ import { useLoaderData } from 'react-router-dom';
 import { SliderData } from '../../data/SliderData';
 import Hero from '../../components/Hero/Hero';
 import BestSellers from '../../components/bestSellers';
+import Cart from '../../components/Cart';
 
 const Home = () => {
   const { books } = useLoaderData();
@@ -20,6 +21,7 @@ const Home = () => {
 
   return (
     <section className="min-h-[calc(100vh-80px)] bg-lightGray">
+      <Cart />
       <Hero id="home" slides={SliderData} />
       {/* <Slider /> */}
       <BestSellers books={books} />

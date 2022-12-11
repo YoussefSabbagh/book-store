@@ -25,7 +25,6 @@ export const router = createBrowserRouter([
       {
         path: '/users/:user_id',
         element: <Profile />,
-        loader: loaderUserById,
       },
       {
         path: '/users/:user_id/cart',

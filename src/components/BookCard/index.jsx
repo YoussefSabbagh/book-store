@@ -1,22 +1,77 @@
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { FaShoppingCart, FaStar } from 'react-icons/fa';
+import { setAddItemToCart, setOpenCart } from '../../features/CartSlice';
 
 const BookCard = ({ book }) => {
+  const dispatch = useDispatch();
+
+  const onAddToCart = () => {
+    const price = book.price.replace('$', '');
+    const item = {
+      id: book.isbn13,
+      title: book.title,
+      text: book.subtitle,
+      img: book.image,
+      price: price,
+    };
+    dispatch(setAddItemToCart(item));
+  };
+
+  const onCartToggle = () => {
+    dispatch(
+      setOpenCart({
+        cartState: true,
+      })
+    );
+  };
+
   return (
-    <article className="border-red-400 border bg-slate-100 pb-8">
-      <img src={book.image} alt={book.title} />
-      <div className="px-10 py-4 cursor-pointer hover:text-blue-500 ">
-        <p className="font-bold text-lg">{book.title}</p>
-        <p>{book.subtitle}</p>
-        <p>{book.price}</p>
+    <article
+      className={`relative grid items-center justify-items-center rounded-xl py-2 px-2 transition-all duration-700 ease-in-out w-full hover:scale-105 border-4 border-primary`}
+    >
+      <div className={`flex items-center justify-center`}>
+        <img
+          src={book.image}
+          alt={book.title}
+          className={`transitions-theme hover:-rotate-12 object-cover  `}
+        />
       </div>
-      <button
-        type="button"
-        className="button-theme bg-slate-900 shadow-slate-900 text-slate-100 py-1.5"
-      >
-        <Link className="text-myWhite" to={`/books/${book.isbn13}`}>
-          ver Detalle
-        </Link>
-      </button>
+      <div className={`grid items-center justify-items-center text-darkBlue `}>
+        <h2 className="font-bold">{book.title}</h2>
+        <h2 className="">{book.subtitle}</h2>
+        <div className=" flex items-center justify-between w-28 my-2">
+          <p className="flex items-center bg-white/80  px-1 rounded blur-effect-theme text-black">
+            {book.price}
+          </p>
+          <div className="flex items-center gap-1">
+            <FaStar className="icon-style text-amber-400" />
+            <p className="md:text-sm font-normal text-darkBlue">
+              {book.rating}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            className="bg-white/90 blur-effect-theme button-theme p-1 shadow shadow-sky-200"
+            onClick={() => {
+              onAddToCart();
+              onCartToggle();
+            }}
+          >
+            <FaShoppingCart className="icon-style text-slate-900" />
+          </button>
+          <Link to={`/books/${book.isbn13}`}>
+            <button
+              type="button"
+              className="bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black"
+            >
+              Detalles
+            </button>
+          </Link>
+        </div>
+      </div>
     </article>
   );
 };
