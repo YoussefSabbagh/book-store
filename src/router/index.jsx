@@ -9,6 +9,7 @@ import Books, { loaderBooks } from '../pages/books';
 import NotFound from '../pages/NotFound';
 import BookDetail, { loaderBookDetail } from '../pages/books/BookDetail';
 import Profile, { loaderUserById } from '../pages/users/Profile';
+import Checkout from '../pages/checkout';
 // import Login from '../pages/Login';
 
 export const router = createBrowserRouter([
@@ -31,6 +32,7 @@ export const router = createBrowserRouter([
         element: <BookDetail />,
         loader: loaderBookDetail,
       },
+      { path: '/checkout', element: <Checkout /> },
       { path: '/checkout/:user_id', element: <Books />, loader: loaderBooks },
     ],
   },

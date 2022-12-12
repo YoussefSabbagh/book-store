@@ -7,6 +7,7 @@ import { FaBars, FaSearch, FaShoppingCart, FaTimes } from 'react-icons/fa';
 
 import logo from '../../assets/image/logos/logo.png';
 import { selectTotalQTY, setOpenCart } from '../../features/CartSlice';
+import CartFinder from '../../services/api';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -15,7 +16,18 @@ const Header = () => {
   const { keycloak } = useKeycloak();
   const [showMobileMenu, SetShowMobileMenu] = useState(false);
 
-  // console.log('====profile=====', keycloak.tokenParsed);
+  console.log('====profile=====', keycloak.token);
+
+  const getCart = async () => {
+    try {
+      const data = await CartFinder.getCart();
+      console.log(data);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  getCart();
 
   const handleShowToggleMenu = () => {
     SetShowMobileMenu(!showMobileMenu);

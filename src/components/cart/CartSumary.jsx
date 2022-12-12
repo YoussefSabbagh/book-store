@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { selectTotalAmount } from '../../features/CartSlice';
 
@@ -13,14 +14,16 @@ const CartSumary = () => {
           ${totalAmount}
         </h1>
       </div>
-      <div className="grid items-center gap-2">
-        <p className="text-sm font-medium text-center">
-          Taxes and Shipping Will Calculate At Shipping
-        </p>
-        <button type="button" className="button-theme bg-darkBlue text-white">
-          Check Out
-        </button>
-      </div>
+      <Link to="/checkout">
+        <div className="grid items-center gap-2">
+          <p className="text-sm font-medium text-center">
+            Taxes and Shipping Will Calculate At Shipping
+          </p>
+          <button type="button" className="button-theme bg-darkBlue text-white">
+            Check Out
+          </button>
+        </div>
+      </Link>
     </div>
   );
 };
