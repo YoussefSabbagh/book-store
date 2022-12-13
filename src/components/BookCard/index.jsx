@@ -1,19 +1,24 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { FaShoppingCart, FaStar } from 'react-icons/fa';
+import { useKeycloak } from '@react-keycloak/web';
+
+import { FaStar } from 'react-icons/fa';
+import { MdAddShoppingCart } from 'react-icons/md';
 import { setAddItemToCart, setOpenCart } from '../../features/CartSlice';
 
 const BookCard = ({ book }) => {
+  const { keycloak } = useKeycloak();
   const dispatch = useDispatch();
 
   const onAddToCart = () => {
-    const price = book.price.replace('$', '');
+    const price = parseInt(book.price.replace('$', ''));
     const item = {
       id: book.isbn13,
       title: book.title,
       text: book.subtitle,
       img: book.image,
       price: price,
+      token: keycloak.token,
     };
     dispatch(setAddItemToCart(item));
   };
@@ -52,16 +57,18 @@ const BookCard = ({ book }) => {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            className="bg-white/90 blur-effect-theme button-theme p-1 shadow shadow-sky-200"
-            onClick={() => {
-              onAddToCart();
-              onCartToggle();
-            }}
-          >
-            <FaShoppingCart className="icon-style text-slate-900" />
-          </button>
+          {book.price !== '$0.00' && (
+            <button
+              type="button"
+              className="bg-white/90 blur-effect-theme button-theme p-1 shadow shadow-sky-200"
+              onClick={() => {
+                onAddToCart();
+                // onCartToggle();
+              }}
+            >
+              <MdAddShoppingCart className="icon-style text-slate-900" />
+            </button>
+          )}
           <Link to={`/books/${book.isbn13}`}>
             <button
               type="button"

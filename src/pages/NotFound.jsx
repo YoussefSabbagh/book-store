@@ -5,7 +5,7 @@ import Header from '../components/header';
 const NotFound = () => {
   const error = useRouteError();
   const navigate = useNavigate();
-  console.log(error);
+  // console.log(error);
   useEffect(() => {
     setTimeout(() => {
       navigate('/');

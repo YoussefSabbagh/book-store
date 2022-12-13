@@ -1,5 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { useKeycloak } from '@react-keycloak/web';
+
 import { FaMinus, FaPlus, FaRegTrashAlt } from 'react-icons/fa';
 import {
   setDecreaseItemQTY,
@@ -9,6 +11,7 @@ import {
 
 const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
   const dispatch = useDispatch();
+  const { keycloak } = useKeycloak();
 
   const onRemoveItem = () => {
     dispatch(
@@ -19,6 +22,7 @@ const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
         img,
         price,
         cartQuantity,
+        token: keycloak.token,
       })
     );
   };
@@ -32,6 +36,7 @@ const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
         img,
         price,
         cartQuantity,
+        token: keycloak.token,
       })
     );
   };
@@ -44,6 +49,7 @@ const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
         img,
         price,
         cartQuantity,
+        token: keycloak.token,
       })
     );
   };
@@ -95,7 +101,7 @@ const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
         <div className="grid items-center gap-4">
           <div className="grid items-center justify-center">
             <p className="text-lg lg:text-base text-slate-900 font-medium">
-              ${price * cartQuantity}
+              ${(price * cartQuantity).toFixed(2)}
             </p>
           </div>
           <div className="grid items-center justify-center">

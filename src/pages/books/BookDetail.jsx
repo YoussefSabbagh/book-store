@@ -2,7 +2,8 @@ import { useLoaderData } from 'react-router-dom';
 
 const BookDetail = () => {
   const { book } = useLoaderData();
-  console.log(book);
+
+  // console.log(book);
 
   return (
     <section className="p-10">

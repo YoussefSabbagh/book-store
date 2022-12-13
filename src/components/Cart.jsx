@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useKeycloak } from '@react-keycloak/web';
 
 import {
   selectCartItems,
@@ -16,11 +17,10 @@ import CartSumary from './cart/CartSumary';
 
 const Cart = () => {
   const dispatch = useDispatch();
+  const { keycloak } = useKeycloak();
   const ifCartState = useSelector(selectCartState);
   const cartItems = useSelector(selectCartItems);
   const totalQTY = useSelector(selectTotalQTY);
-
-  // console.log(cartItems)
 
   useEffect(() => {
     dispatch(setGetTotals());
@@ -35,7 +35,8 @@ const Cart = () => {
   };
 
   const onClearCartItems = () => {
-    dispatch(setClearCartItems());
+    const token = keycloak.token;
+    dispatch(setClearCartItems(token));
   };
 
   return (
