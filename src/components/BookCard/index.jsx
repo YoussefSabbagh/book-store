@@ -1,16 +1,19 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useKeycloak } from '@react-keycloak/web';
 
 import { FaStar } from 'react-icons/fa';
 import { MdAddShoppingCart } from 'react-icons/md';
-import { setAddItemToCart, setOpenCart } from '../../features/CartSlice';
+import { setAddItemToCart } from '../../features/CartSlice';
 
 const BookCard = ({ book }) => {
   const { keycloak } = useKeycloak();
   const dispatch = useDispatch();
+  const [processing, setProcessing] = useState(false);
 
   const onAddToCart = () => {
+    setProcessing(true);
     const price = parseInt(book.price.replace('$', ''));
     const item = {
       id: book.isbn13,
@@ -21,14 +24,7 @@ const BookCard = ({ book }) => {
       token: keycloak.token,
     };
     dispatch(setAddItemToCart(item));
-  };
-
-  const onCartToggle = () => {
-    dispatch(
-      setOpenCart({
-        cartState: true,
-      })
-    );
+    setProcessing(false);
   };
 
   return (
@@ -60,10 +56,10 @@ const BookCard = ({ book }) => {
           {book.price !== '$0.00' && (
             <button
               type="button"
-              className="bg-white/90 blur-effect-theme button-theme p-1 shadow shadow-sky-200"
+              disabled={processing}
+              className="bg-white/90 blur-effect-theme button-theme p-1 shadow shadow-sky-200 disabled:opacity-50"
               onClick={() => {
                 onAddToCart();
-                // onCartToggle();
               }}
             >
               <MdAddShoppingCart className="icon-style text-slate-900" />
