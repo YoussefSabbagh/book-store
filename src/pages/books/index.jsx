@@ -24,25 +24,3 @@ const Books = () => {
 };
 
 export default Books;
-// 'https://api.itbook.store/1.0/search/title=Algol'
-
-export const loaderBooks = async () => {
-  const initialLanguages = [
-    'Python',
-    'Java',
-    'Rubi',
-    'TypeScript',
-    'HTML',
-    'Bootstrap',
-    'Angular',
-    'Nodejs',
-    'Nextjs',
-  ];
-  const i = Math.floor(Math.random() * initialLanguages.length);
-  const find = initialLanguages[i];
-
-  const response = await fetch(`https://api.itbook.store/1.0/search/${find}`);
-  const books = await response.json();
-
-  return { books };
-};

@@ -46,13 +46,3 @@ const BookDetail = () => {
 };
 
 export default BookDetail;
-
-export const loaderBookDetail = async ({ params }) => {
-  const response = await fetch(
-    `https://api.itbook.store/1.0/books/${params.id}`
-  );
-
-  const book = await response.json();
-
-  return { book };
-};

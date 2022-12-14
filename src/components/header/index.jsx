@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useKeycloak } from '@react-keycloak/web';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { FaBars, FaSearch, FaShoppingCart, FaTimes } from 'react-icons/fa';
 
 import logo from '../../assets/image/logos/logo.png';
-import { selectTotalQTY, setOpenCart } from '../../features/CartSlice';
+import { selectTotalQTY } from '../../features/CartSlice';
 import CartFinder from '../../services/api';
 
 const Header = () => {
-  const dispatch = useDispatch();
   const totalQTY = useSelector(selectTotalQTY);
 
   const { keycloak } = useKeycloak();
@@ -21,7 +20,7 @@ const Header = () => {
   const getCart = async () => {
     const token = keycloak.token;
     try {
-      const data = await CartFinder.getCart(token);
+      await CartFinder.getCart(token);
     } catch (error) {
       console.error(error.message);
     }
@@ -31,14 +30,6 @@ const Header = () => {
 
   const handleShowToggleMenu = () => {
     SetShowMobileMenu(!showMobileMenu);
-  };
-
-  const onCartToggle = () => {
-    dispatch(
-      setOpenCart({
-        cartState: true,
-      })
-    );
   };
 
   return (
@@ -127,11 +118,20 @@ const Header = () => {
               <FaSearch />
 
               {/* <div className="relative" onClick={() => setOpen(!open)}> */}
-              <div className="relative" onClick={onCartToggle}>
-                <FaShoppingCart />
-                <span className="text-xs w-4 h-4 rounded-full bg-[#2879fe] text-myWhite absolute -right-[10px] -top-2 flex justify-center items-center">
-                  {totalQTY}
-                </span>
+              <div className="relative">
+                <NavLink
+                  to={`/checkout/${keycloak.tokenParsed.given_name}`}
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'text-primary'
+                      : ' text-darkBlue hover:text-primary'
+                  }
+                >
+                  <FaShoppingCart />
+                  <span className="text-xs w-4 h-4 rounded-full bg-[#2879fe] text-myWhite absolute -right-[10px] -top-2 flex justify-center items-center">
+                    {totalQTY}
+                  </span>
+                </NavLink>
               </div>
 
               <NavLink to={`/users/${keycloak.tokenParsed.given_name}`}>

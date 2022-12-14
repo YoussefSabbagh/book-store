@@ -18,10 +18,3 @@ const Home = () => {
 };
 
 export default Home;
-
-export const loaderBestSellersBooks = async () => {
-  const response = await fetch('https://api.itbook.store/1.0/new');
-  const books = await response.json();
-
-  return { books };
-};

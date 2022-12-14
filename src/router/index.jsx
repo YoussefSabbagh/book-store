@@ -2,15 +2,14 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import Public from '../layout/Public';
 
-// import RequireAuth from '../features/auth/RequireAuth';
+import { loaderBookDetail, loaderBooks, loaderNewBooks } from '../loaderData';
 
-import Home, { loaderBestSellersBooks } from '../pages/home';
-import Books, { loaderBooks } from '../pages/books';
+import Home from '../pages/home';
+import Books from '../pages/books';
 import NotFound from '../pages/NotFound';
-import BookDetail, { loaderBookDetail } from '../pages/books/BookDetail';
-import Profile, { loaderUserById } from '../pages/users/Profile';
-import Checkout from '../pages/checkout';
-// import Login from '../pages/Login';
+import BookDetail from '../pages/books/BookDetail';
+import Profile from '../pages/users/Profile';
+import CartPage from '../pages/CartPage';
 
 export const router = createBrowserRouter([
   {
@@ -18,43 +17,12 @@ export const router = createBrowserRouter([
     element: <Public />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Home />, loader: loaderBestSellersBooks },
-      // { path: '/login', element: <Login /> },
-      { path: '/books', element: <Books />, loader: loaderBooks },
+      { index: true, element: <Home />, loader: loaderBooks },
+      { path: '/books', element: <Books />, loader: loaderNewBooks },
       { path: '/books/:id', element: <BookDetail />, loader: loaderBookDetail },
-      { path: '/users', element: <Books />, loader: loaderBooks },
-      {
-        path: '/users/:user_id',
-        element: <Profile />,
-      },
-      {
-        path: '/users/:user_id/cart',
-        element: <BookDetail />,
-        loader: loaderBookDetail,
-      },
-      { path: '/checkout', element: <Checkout /> },
-      { path: '/checkout/:user_id', element: <Books />, loader: loaderBooks },
+      { path: '/users/:user_id', element: <Profile /> },
+      { path: '/users/:user_id/cart', element: <CartPage /> },
+      { path: '/checkout/:user_id', element: <CartPage /> },
     ],
   },
-  // {
-  //   path: '/profile',
-  //   element: <RequireAuth />,
-  //   errorElement: <NotFound />,
-  //   children: [
-  //     { index: true, element: <Home /> },
-  //     { path: '/books', element: <Books />, loader: loaderBooks },
-  //     { path: '/books/:id', element: <BookDetail />, loader: loaderBookDetail },
-  //     {
-  //       path: '/users/:user_id',
-  //       element: <Profile />,
-  //       loader: loaderUserById,
-  //     },
-  //     {
-  //       path: '/users/:user_id/cart',
-  //       element: <BookDetail />,
-  //       loader: loaderBookDetail,
-  //     },
-  //     { path: '/checkout/:user_id', element: <Books />, loader: loaderBooks },
-  //   ],
-  // },
 ]);
