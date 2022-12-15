@@ -1,32 +1,8 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { useKeycloak } from '@react-keycloak/web';
-
 import { FaStar } from 'react-icons/fa';
-import { MdAddShoppingCart } from 'react-icons/md';
-import { setAddItemToCart } from '../../features/CartSlice';
 
+import AddToCart from '../AddToCart';
 const BookCard = ({ book }) => {
-  const { keycloak } = useKeycloak();
-  const dispatch = useDispatch();
-  const [processing, setProcessing] = useState(false);
-
-  const onAddToCart = () => {
-    setProcessing(true);
-    const price = parseInt(book.price.replace('$', ''));
-    const item = {
-      id: book.isbn13,
-      title: book.title,
-      text: book.subtitle,
-      img: book.image,
-      price: price,
-      token: keycloak.token,
-    };
-    dispatch(setAddItemToCart(item));
-    setProcessing(false);
-  };
-
   return (
     <article
       className={`relative grid items-center justify-items-center rounded-xl py-2 px-2 transition-all duration-700 ease-in-out w-full hover:scale-105 border-4 border-primary`}
@@ -53,18 +29,7 @@ const BookCard = ({ book }) => {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          {book.price !== '$0.00' && (
-            <button
-              type="button"
-              disabled={processing}
-              className="bg-white/90 blur-effect-theme button-theme p-1 shadow shadow-sky-200 disabled:opacity-50"
-              onClick={() => {
-                onAddToCart();
-              }}
-            >
-              <MdAddShoppingCart className="icon-style text-slate-900" />
-            </button>
-          )}
+          <AddToCart book={book} />
           <Link to={`/books/${book.isbn13}`}>
             <button
               type="button"

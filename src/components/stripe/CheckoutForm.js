@@ -108,7 +108,7 @@ export const CheckoutForm = ({ totalAmount }) => {
         });
         return;
       }
-
+      reset();
       setPaymentMethod(payload.paymentMethod);
     }
   };

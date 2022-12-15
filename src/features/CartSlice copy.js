@@ -4,8 +4,8 @@ import CartFinder from '../services/api';
 
 const initialState = {
   cartState: false,
-  cartItems: sessionStorage.getItem('cart')
-    ? JSON.parse(sessionStorage.getItem('cart'))
+  cartItems: localStorage.getItem('cart')
+    ? JSON.parse(localStorage.getItem('cart'))
     : [], // Let Suppose Database
   cartTotalAmount: 0,
   cartTotalQantity: 0,
@@ -59,7 +59,7 @@ const cartSlice = createSlice({
 
       addBook(book, token);
 
-      sessionStorage.setItem('cart', JSON.stringify(state.cartItems));
+      localStorage.setItem('cart', JSON.stringify(state.cartItems));
     },
 
     setRemoveItemFromCart: (state, action) => {
@@ -68,7 +68,7 @@ const cartSlice = createSlice({
       );
 
       state.cartItems = removeItem;
-      sessionStorage.setItem('cart', JSON.stringify(state.cartItems));
+      localStorage.setItem('cart', JSON.stringify(state.cartItems));
       const deleteBook = async (id, token) => {
         try {
           await CartFinder.deleteBookFromCart(id, token);
@@ -113,7 +113,7 @@ const cartSlice = createSlice({
       };
 
       addBook(book, token);
-      sessionStorage.setItem('cart', JSON.stringify(state.cartItems));
+      localStorage.setItem('cart', JSON.stringify(state.cartItems));
     },
 
     setDecreaseItemQTY: (state, action) => {
@@ -147,7 +147,7 @@ const cartSlice = createSlice({
 
       addBook(book, token);
 
-      sessionStorage.setItem('cart', JSON.stringify(state.cartItems));
+      localStorage.setItem('cart', JSON.stringify(state.cartItems));
     },
 
     setClearCartItems: (state, action) => {
@@ -165,7 +165,7 @@ const cartSlice = createSlice({
 
       removeAllBooks(token);
 
-      sessionStorage.setItem('cart', JSON.stringify(state.cartItems));
+      localStorage.setItem('cart', JSON.stringify(state.cartItems));
     },
 
     setGetTotals: (state, action) => {

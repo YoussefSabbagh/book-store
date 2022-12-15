@@ -9,7 +9,7 @@ import { CheckoutForm } from '../../components/stripe/CheckoutForm';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const Checkout = () => {
+const PaymentPage = () => {
   const totalAmount = useSelector(selectTotalAmount);
   const navigate = useNavigate();
 
@@ -28,4 +28,4 @@ const Checkout = () => {
   );
 };
 
-export default Checkout;
+export default PaymentPage;

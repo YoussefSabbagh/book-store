@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useKeycloak } from '@react-keycloak/web';
+import { FaArrowLeft, FaTrash } from 'react-icons/fa';
 
 import {
   selectCartItems,
@@ -14,7 +15,6 @@ import {
 
 import CartEmpty from '../components/cartItems/CartEmpty';
 import CartItem from '../components/cartItems/CartItem';
-import { FaArrowLeft, FaTrash } from 'react-icons/fa';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -91,16 +91,22 @@ const Cart = () => {
 
           <div className=" uppercase w-full md:w-3/4 px-5 py-2 grid items-center">
             <div className="flex items-center justify-between mb-4">
-              <p className="">Cantidad</p>
+              <p className="">Cantidad Productos</p>
               <p className=" ">
                 {totalQTY} {totalQTY > 1 ? 'unidades' : 'unidad'}
+              </p>
+            </div>
+            <div className="flex items-center justify-between mb-4">
+              <p className="">cantidad items</p>
+              <p className=" ">
+                {cartItems.length} {cartItems.length > 1 ? 'items' : 'item'}
               </p>
             </div>
             <div className="flex items-center justify-between font-semibold mb-8">
               <p className="">SubTotal</p>
               <p className="">${totalAmount.toFixed(2)}</p>
             </div>
-            <Link to="/checkout">
+            <Link to="/payment">
               <div className="grid items-center gap-2">
                 <button
                   type="button"
