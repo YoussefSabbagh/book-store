@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { useKeycloak } from '@react-keycloak/web';
 import { useSelector } from 'react-redux';
 
-import { FaBars, FaSearch, FaShoppingCart, FaTimes } from 'react-icons/fa';
+import { FaBars, FaShoppingCart, FaTimes } from 'react-icons/fa';
 
 import logo from '../../assets/image/logos/logo.png';
 import { selectTotalQTY } from '../../features/CartSlice';
@@ -115,9 +115,6 @@ const Header = () => {
         {!!keycloak.authenticated && (
           <div className="flex items-center mx-4 md:mr-0">
             <div className="flex justify-between items-center space-x-5  text-[#777] cursor-pointer">
-              <FaSearch />
-
-              {/* <div className="relative" onClick={() => setOpen(!open)}> */}
               <div className="relative">
                 <NavLink
                   to={`/checkout/${keycloak.tokenParsed.given_name}`}
