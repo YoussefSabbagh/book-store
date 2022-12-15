@@ -12,7 +12,7 @@ const BookDetail = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="p-10 relative">
+    <section className="px-4 md:px-20 py-10 relative min-h-[calc(100vh-80px)]">
       <div className="absolute top-0 left-20 flex">
         <button
           type="button"
@@ -27,27 +27,35 @@ const BookDetail = () => {
       </div>
 
       <h2 className="text-center text-3xl text-primary"> {book.title}</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <img src={book.image} alt="" />
-        <div className="mt-8">
-          <p className="text-darkBlue font-bold">{book.subtitle}</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+        <div className="w-2/3 ">
+          <img
+            src={book.image}
+            alt={`book ${book.title}`}
+            className="w-full h-auto ob"
+          />
+        </div>
+        <div className="my-8 py-8">
+          <p className="text-darkBlue font-bold text-xl mb-4">
+            {book.subtitle}
+          </p>
+          <p className="mb-4">
+            <span className="font-bold">Descripción</span>:: {book.desc}
+          </p>
           <p>
             <span className="font-bold">Authors</span>: {book.authors}
           </p>
-          <p className="mt-4">
-            <span className="font-bold">Descripción</span>:: {book.desc}
+          <p className="mb-4">
+            <span className="font-bold">Editorial</span>: {book.publisher}
           </p>
-          <p className="mt-4">
-            <span className="font-bold">Editorial</span>:: {book.publisher}
-          </p>
-          <p className="mt-4">
+          <p className="mb-4">
             <span className="font-bold">ISBN</span>: {book.isbn13}
           </p>
-          <p className="mt-4 flex items-center">
+          <p className="mb-4 flex items-center">
             <span className="font-bold mr-2">Rating:</span>{' '}
             <StarRating rating={book.rating} /> {book.rating}
           </p>
-          <p>
+          <p className="mb-8">
             <span className="font-bold">Paginas</span>: {book.pages}
             <span className=" ml-3 font-bold">Year</span>: {book.year}
           </p>

@@ -9,19 +9,21 @@ import {
   setRemoveItemFromCart,
 } from '../../features/CartSlice';
 
-const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
+const CartItem = ({
+  item: { product, title, subtitle, image, price, qty },
+}) => {
   const dispatch = useDispatch();
   const { keycloak } = useKeycloak();
 
   const onRemoveItem = () => {
     dispatch(
       setRemoveItemFromCart({
-        id,
+        product,
         title,
-        text,
-        img,
+        subtitle,
+        image,
         price,
-        cartQuantity,
+        qty,
         token: keycloak.token,
       })
     );
@@ -30,12 +32,12 @@ const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
   const onIncreaseItemQTY = () => {
     dispatch(
       setIncreaseItemQTY({
-        id,
+        product,
         title,
-        text,
-        img,
+        subtitle,
+        image,
         price,
-        cartQuantity,
+        qty,
         token: keycloak.token,
       })
     );
@@ -43,12 +45,12 @@ const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
   const onDecreaseItemQTY = () => {
     dispatch(
       setDecreaseItemQTY({
-        id,
+        product,
         title,
-        text,
-        img,
+        subtitle,
+        image,
         price,
-        cartQuantity,
+        qty,
         token: keycloak.token,
       })
     );
@@ -62,12 +64,12 @@ const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
             className={`bg-theme relative rounded p-1 hover:scale-105 transition-all duration-75 ease-in-out grid items-center min-w-[9rem]`}
           >
             <img
-              src={img}
-              alt={`img/cart-item/${id}`}
+              src={image}
+              alt={`img/cart-item/${product}`}
               className="w-32 h-auto object-cover"
             />
             <div className="absolute right-1 top-1 blur-theme-effect bg-darkBlue text-myWhite text-xs px-1 rounded">
-              ${price}
+              ${(price * 1).toFixed(2)}
             </div>
           </div>
           <div className="grid items-center gap-4">
@@ -75,7 +77,7 @@ const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
               <h2 className="font-semibold text-sm  md:text-lg md:text-darkBlue">
                 {title}
               </h2>
-              <p className="text-sm text-slate-700">{text}</p>
+              <p className="text-sm text-slate-700">{subtitle}</p>
             </div>
 
             <div className="flex items-center justify-around w-full max-w-[200px]">
@@ -87,7 +89,7 @@ const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
                 <FaMinus className="w-5 h-5 lg:w-4 lg:h-4 text-white stroke-[2]" />
               </button>
               <div className="bg-darkBlue rounded text-white font-medium lg:text-xs w-7 h-6 lg:h-5 lg:w-6 flex items-center justify-center">
-                {cartQuantity}
+                {qty}
               </div>
               <button
                 type="button"
@@ -103,7 +105,7 @@ const CartItem = ({ item: { id, title, text, img, price, cartQuantity } }) => {
         <div className="grid items-center gap-4">
           <div className="grid items-center justify-center">
             <p className="text-lg lg:text-base text-slate-900 font-medium">
-              ${(price * cartQuantity).toFixed(2)}
+              ${(price * qty).toFixed(2)}
             </p>
           </div>
 

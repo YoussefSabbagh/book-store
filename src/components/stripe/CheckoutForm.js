@@ -108,7 +108,9 @@ export const CheckoutForm = ({ totalAmount }) => {
         });
         return;
       }
-      reset();
+      const token = keycloak.token;
+      dispatch(setClearCartItems(token));
+      dispatch(setCloseCart({ cartState: false }));
       setPaymentMethod(payload.paymentMethod);
     }
   };
@@ -121,9 +123,6 @@ export const CheckoutForm = ({ totalAmount }) => {
       email: '',
       name: '',
     });
-    const token = keycloak.token;
-    dispatch(setClearCartItems(token));
-    dispatch(setCloseCart({ cartState: false }));
     navigate('/books');
   };
 

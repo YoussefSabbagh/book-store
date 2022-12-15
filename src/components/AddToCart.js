@@ -24,10 +24,10 @@ const AddToCart = ({ book }) => {
     setProcessing(true);
     const price = parseInt(book.price.replace('$', ''));
     const item = {
-      id: book.isbn13,
+      product: book.isbn13,
       title: book.title,
-      text: book.subtitle,
-      img: book.image,
+      subtitle: book.subtitle,
+      image: book.image,
       price: price,
       token: keycloak.token,
     };

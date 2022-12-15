@@ -25,25 +25,25 @@ const cartSlice = createSlice({
 
     setAddItemToCart: (state, action) => {
       const book = {
-        product: action.payload.id,
+        product: action.payload.product,
         title: action.payload.title,
-        subtitle: action.payload.text,
-        image: action.payload.img,
+        subtitle: action.payload.subtitle,
+        image: action.payload.image,
         price: action.payload.price,
         qty: 1,
       };
       const token = action.payload.token;
 
       const itemIndex = state.cartItems.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item.product === action.payload.product
       );
 
       if (itemIndex >= 0) {
-        state.cartItems[itemIndex].cartQuantity += 1;
-        book.qty = state.cartItems[itemIndex].cartQuantity;
+        state.cartItems[itemIndex].qty += 1;
+        book.qty = state.cartItems[itemIndex].qty;
         toast.success(`Se incremento ${action.payload.title}`);
       } else {
-        const temp = { ...action.payload, cartQuantity: 1 };
+        const temp = { ...action.payload, qty: 1 };
 
         state.cartItems.push(temp);
         toast.success(`${action.payload.title} added to Cart`);
@@ -64,30 +64,30 @@ const cartSlice = createSlice({
 
     setRemoveItemFromCart: (state, action) => {
       const removeItem = state.cartItems.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item.product !== action.payload.product
       );
 
       state.cartItems = removeItem;
       localStorage.setItem('cart', JSON.stringify(state.cartItems));
-      const deleteBook = async (id, token) => {
+      const deleteBook = async (product, token) => {
         try {
-          await CartFinder.deleteBookFromCart(id, token);
+          await CartFinder.deleteBookFromCart(product, token);
         } catch (error) {
           console.error(error.message);
         }
       };
 
-      deleteBook(action.payload.id, action.payload.token);
+      deleteBook(action.payload.product, action.payload.token);
 
       toast.success(`${action.payload.title} Removed From Cart`);
     },
 
     setIncreaseItemQTY: (state, action) => {
       const book = {
-        product: action.payload.id,
+        product: action.payload.product,
         title: action.payload.title,
-        subtitle: action.payload.text,
-        image: action.payload.img,
+        subtitle: action.payload.subtitle,
+        image: action.payload.image,
         price: action.payload.price,
         qty: 1,
       };
@@ -95,12 +95,12 @@ const cartSlice = createSlice({
       const token = action.payload.token;
 
       const itemIndex = state.cartItems.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item.product === action.payload.product
       );
 
       if (itemIndex >= 0) {
-        state.cartItems[itemIndex].cartQuantity += 1;
-        book.qty = state.cartItems[itemIndex].cartQuantity;
+        state.cartItems[itemIndex].qty += 1;
+        book.qty = state.cartItems[itemIndex].qty;
         toast.success(`Se incremento ${action.payload.title}`);
       }
 
@@ -118,10 +118,10 @@ const cartSlice = createSlice({
 
     setDecreaseItemQTY: (state, action) => {
       const book = {
-        product: action.payload.id,
+        product: action.payload.product,
         title: action.payload.title,
-        subtitle: action.payload.text,
-        image: action.payload.img,
+        subtitle: action.payload.subtitle,
+        image: action.payload.image,
         price: action.payload.price,
         qty: 1,
       };
@@ -129,12 +129,12 @@ const cartSlice = createSlice({
       const token = action.payload.token;
 
       const itemIndex = state.cartItems.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item.product === action.payload.product
       );
 
-      if (state.cartItems[itemIndex].cartQuantity > 1) {
-        state.cartItems[itemIndex].cartQuantity -= 1;
-        book.qty = state.cartItems[itemIndex].cartQuantity;
+      if (state.cartItems[itemIndex].qty > 1) {
+        state.cartItems[itemIndex].qty -= 1;
+        book.qty = state.cartItems[itemIndex].qty;
         toast.success(`Se decremento ${action.payload.title}`);
       }
       const addBook = async (book, token) => {
@@ -171,11 +171,11 @@ const cartSlice = createSlice({
     setGetTotals: (state, action) => {
       let { totalAmount, totalQTY } = state.cartItems.reduce(
         (cartTotal, cartItem) => {
-          const { price, cartQuantity } = cartItem;
-          const totalPrice = price * cartQuantity;
+          const { price, qty } = cartItem;
+          const totalPrice = price * qty;
 
           cartTotal.totalAmount += totalPrice;
-          cartTotal.totalQTY += cartQuantity;
+          cartTotal.totalQTY += qty;
 
           return cartTotal;
         },
