@@ -6,7 +6,7 @@ import Image3 from '../assets/image/bgs/hero3.jpg';
 export const SliderData = [
   {
     title: 'Youssef Sabbagh',
-    subtitle0: 'Aplicación para desarrollador frontend',
+    subtitle0: 'Aplicación para el cargo de desarrollador frontend React.js',
     subtitle1: 'Lo hacemos desde Caracas - Venezuela',
     path: 'contact',
     label: 'Contactanos',
@@ -15,8 +15,8 @@ export const SliderData = [
   },
   {
     title: 'Youssef Sabbagh',
-    subtitle0: 'Creado con Reactjs usando:',
-    subtitle1: 'react-router-dom V6.4',
+    subtitle0: 'Creado con Reactjs usando: react-router-dom V6.4',
+    subtitle1: 'Tailwind - Redux-Toolkit - React-Icons',
     path: 'contact',
     label: 'Contactanos',
     alt: 'hero',
@@ -24,8 +24,9 @@ export const SliderData = [
   },
   {
     title: 'Youssef Sabbagh',
-    subtitle0: 'Te ayudamos a hacer crecer tu negocio',
-    subtitle1: 'te conectamos con tu audiencia',
+    subtitle0: 'En Home muestra al azar 10 libros cada vez que se ingresa',
+    subtitle1:
+      'En Book se inicia con los nuevos y hay busqueda por keyword y paginacion',
     path: 'contact',
     label: 'Contactanos',
     alt: 'hero',
@@ -33,8 +34,8 @@ export const SliderData = [
   },
   {
     title: 'Youssef Sabbagh',
-    subtitle0: 'Creamos soluciones',
-    subtitle1: 'usando las últimas tecnologías',
+    subtitle0: 'Para incluir en el carrito de compras se debe estar ya logged',
+    subtitle1: 'los datos del usuario son tomados de Keycloak',
     path: 'contact',
     label: 'Contactanos',
     alt: 'hero',

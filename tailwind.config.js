@@ -17,6 +17,7 @@ module.exports = {
         myBlack: '#212529',
       },
       backgroundImage: {
+        contact: "url('assets/image/bgs/1.jpg')",
         'gradient-to-b':
           'linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#141414 68%,#141414 100%);',
       },

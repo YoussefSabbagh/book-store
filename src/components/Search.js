@@ -54,13 +54,19 @@ export const Search = ({ setFindBooks }) => {
             name="keyword"
             onChange={(e) => setKeySearch(e.target.value)}
           />
-          <button type="submit">
-            <AiOutlineSearch className="absolute top-3 right-0 text-lg cursor-pointer" />
+          {/* <button
+            className="bg-black text-white px-4 py-2 ml-4 hover:scale-105 rounded"
+            onClick={() => setCurrentPage(1)}
+          >
+            Nueva busqueda
+          </button> */}
+          <button type="submit" onClick={() => setCurrentPage(1)}>
+            <AiOutlineSearch className=" absolute top-3 right-0 text-lg cursor-pointer" />
           </button>
         </div>
         {data &&
           (data.total > 0 ? (
-            <div className="flex items-center">
+            <div className="flex items-center mt-2">
               <button
                 onClick={handlePrev}
                 className=" h-6 w-6 bg-black text-white flex justify-end items-center mr-2"

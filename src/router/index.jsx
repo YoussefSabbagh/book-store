@@ -11,6 +11,7 @@ import BookDetail from '../pages/books/BookDetail';
 import Profile from '../pages/users/Profile';
 import CartPage from '../pages/CartPage';
 import PaymentPage from '../pages/paymentPage';
+import Contact from '../pages/contact';
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
       { path: '/books/:id', element: <BookDetail />, loader: loaderBookDetail },
       { path: '/users/:user_id', element: <Profile /> },
       { path: '/users/:user_id/cart', element: <CartPage /> },
+      { path: '/contact', element: <Contact /> },
       { path: '/checkout/:user_id', element: <CartPage /> },
       { path: '/payment', element: <PaymentPage /> },
     ],

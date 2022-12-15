@@ -6,7 +6,7 @@ const Hero = ({ slides, id }) => {
   const timeout = useRef(null);
 
   useEffect(() => {
-    timeout.current = setTimeout(nextSlide, 5000);
+    timeout.current = setTimeout(nextSlide, 7000);
 
     return () => {
       if (timeout.current) {
@@ -49,7 +49,7 @@ const Hero = ({ slides, id }) => {
                     className="absolute left-0 top-0 object-cover object-[center] block w-full "
                   />
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center text-center bg-red-50 p-8 text-2xl rounded-lg">
-                    <h1 className="text-6xl font-bold mb-4">{slide.title}</h1>
+                    <h1 className="text-3xl font-bold mb-4">{slide.title}</h1>
                     <h2>{slide.subtitle0}</h2>
                     <h2>{slide.subtitle1}</h2>
                   </div>

@@ -78,6 +78,22 @@ const Header = () => {
               </NavLink>
             </li>
 
+            <li
+              className="text-center mt-8 md:mt-0 text-3xl md:text-base "
+              onClick={handleShowToggleMenu}
+            >
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive
+                    ? 'text-primary'
+                    : ' text-darkBlue hover:text-primary'
+                }
+              >
+                Contacto
+              </NavLink>
+            </li>
+
             {!keycloak.authenticated && (
               <li
                 className="text-center mt-8 md:mt-0 text-3xl md:text-base "

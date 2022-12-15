@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { SliderData } from '../../data/SliderData';
 import Hero from '../../components/Hero/Hero';
-import NewBooks from '../../components/newbooks';
+import SomeBooks from '../../components/somebooks';
 import Cart from '../../components/Cart';
 import { useEffect } from 'react';
 import CartFinder from '../../services/api';
@@ -41,7 +41,7 @@ const Home = () => {
     <section className="min-h-[calc(100vh-80px)] bg-lightGray">
       <Cart />
       <Hero id="home" slides={SliderData} />
-      <NewBooks books={books} />
+      <SomeBooks books={books} />
     </section>
   );
 };
