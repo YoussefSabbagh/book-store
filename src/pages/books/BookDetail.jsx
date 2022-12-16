@@ -1,10 +1,9 @@
 import { useLoaderData, useNavigate } from 'react-router-dom';
 
-import { FaStar } from 'react-icons/fa';
-
 import { FaArrowLeft } from 'react-icons/fa';
 import AddToCart from '../../components/AddToCart';
 import StarRating from '../../components/StarRating';
+import Cart from '../../components/Cart';
 
 const BookDetail = () => {
   const { book } = useLoaderData();
@@ -13,6 +12,7 @@ const BookDetail = () => {
 
   return (
     <section className="px-4 md:px-20 py-10 relative min-h-[calc(100vh-80px)]">
+      <Cart />
       <div className="absolute top-0 left-20 flex">
         <button
           type="button"

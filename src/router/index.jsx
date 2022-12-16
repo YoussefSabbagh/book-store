@@ -2,7 +2,11 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import Public from '../layout/Public';
 
-import { loaderBookDetail, loaderBooks, loaderNewBooks } from '../loaderData';
+import {
+  loaderBookDetail,
+  loaderBooks,
+  loaderNewBooks,
+} from '../services/booksApis';
 
 import Home from '../pages/home';
 import Books from '../pages/books';
@@ -20,8 +24,8 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, element: <Home />, loader: loaderBooks },
-      { path: '/books', element: <Books />, loader: loaderNewBooks },
       { path: '/books/:id', element: <BookDetail />, loader: loaderBookDetail },
+      { path: '/books', element: <Books />, loader: loaderNewBooks },
       { path: '/users/:user_id', element: <Profile /> },
       { path: '/users/:user_id/cart', element: <CartPage /> },
       { path: '/contact', element: <Contact /> },

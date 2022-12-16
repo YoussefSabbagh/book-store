@@ -7,7 +7,7 @@ import Hero from '../../components/Hero/Hero';
 import SomeBooks from '../../components/somebooks';
 import Cart from '../../components/Cart';
 import { useEffect } from 'react';
-import CartFinder from '../../services/api';
+import CartFinder from '../../services/cartApi';
 import { setLoadCart } from '../../features/CartSlice';
 
 const Home = () => {

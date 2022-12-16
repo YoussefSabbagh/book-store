@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import toast from 'react-hot-toast';
-import CartFinder from '../services/api';
+import CartFinder from '../services/cartApi';
 
 const initialState = {
   cartState: false,
