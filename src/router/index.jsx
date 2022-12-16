@@ -16,6 +16,7 @@ import Profile from '../pages/users/Profile';
 import CartPage from '../pages/CartPage';
 import PaymentPage from '../pages/paymentPage';
 import Contact from '../pages/contact';
+import RequireAuth from '../layout/RequireAuth';
 
 export const router = createBrowserRouter([
   {
@@ -24,13 +25,38 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, element: <Home />, loader: loaderBooks },
-      { path: '/books/:id', element: <BookDetail />, loader: loaderBookDetail },
       { path: '/books', element: <Books />, loader: loaderNewBooks },
-      { path: '/users/:user_id', element: <Profile /> },
+      { path: '/books/:id', element: <BookDetail />, loader: loaderBookDetail },
+    ],
+  },
+  {
+    path: '/',
+    element: <RequireAuth />,
+    errorElement: <NotFound />,
+    children: [{ path: '/contact', element: <Contact /> }],
+  },
+  {
+    path: '/payment',
+    element: <RequireAuth />,
+    errorElement: <NotFound />,
+    children: [{ path: '/payment', element: <PaymentPage /> }],
+  },
+  {
+    path: '/users',
+    element: <RequireAuth />,
+    errorElement: <NotFound />,
+    children: [
       { path: '/users/:user_id/cart', element: <CartPage /> },
-      { path: '/contact', element: <Contact /> },
+      { path: '/users/:user_id', element: <Profile /> },
+    ],
+  },
+  {
+    path: '/checkout',
+    element: <RequireAuth />,
+    errorElement: <NotFound />,
+    children: [
+      { path: '/checkout', element: <CartPage /> },
       { path: '/checkout/:user_id', element: <CartPage /> },
-      { path: '/payment', element: <PaymentPage /> },
     ],
   },
 ]);
