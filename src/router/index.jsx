@@ -1,5 +1,4 @@
 import { createBrowserRouter } from 'react-router-dom';
-
 import Public from '../layout/Public';
 
 import {
@@ -25,23 +24,24 @@ export const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, element: <Home />, loader: loaderBooks },
-      { path: '/books', element: <Books />, loader: loaderNewBooks },
-      { path: '/books/:id', element: <BookDetail />, loader: loaderBookDetail },
-      { path: '/contact', element: <Contact /> },
+      { path: 'books', element: <Books />, loader: loaderNewBooks },
+      { path: 'books/:id', element: <BookDetail />, loader: loaderBookDetail },
+      { path: 'contact', element: <Contact /> },
     ],
   },
   {
-    path: '/payment',
+    path: '/',
     element: <RequireAuth />,
-    children: [{ path: '/payment', element: <PaymentPage /> }],
+    errorElement: <NotFound />,
+    children: [{ path: 'payment', element: <PaymentPage /> }],
   },
   {
     path: '/users',
     element: <RequireAuth />,
     errorElement: <NotFound />,
     children: [
-      { path: '/users/:user_id/cart', element: <CartPage /> },
-      { path: '/users/:user_id', element: <Profile /> },
+      { path: ':user_id', element: <Profile /> },
+      { path: ':user_id/cart', element: <CartPage /> },
     ],
   },
   {
@@ -49,8 +49,8 @@ export const router = createBrowserRouter([
     element: <RequireAuth />,
     errorElement: <NotFound />,
     children: [
-      { path: '/checkout', element: <CartPage /> },
-      { path: '/checkout/:user_id', element: <CartPage /> },
+      { index: true, element: <CartPage /> },
+      { path: ':user_id', element: <CartPage /> },
     ],
   },
 ]);
