@@ -16,6 +16,7 @@ import CartPage from '../pages/CartPage';
 import PaymentPage from '../pages/paymentPage';
 import Contact from '../pages/contact';
 import RequireAuth from '../layout/RequireAuth';
+import Pendiente from '../pages/Pendiente';
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
       { path: 'books', element: <Books />, loader: loaderNewBooks },
       { path: 'books/:id', element: <BookDetail />, loader: loaderBookDetail },
       { path: 'contact', element: <Contact /> },
+      { path: 'pendiente', element: <Pendiente /> },
     ],
   },
   {

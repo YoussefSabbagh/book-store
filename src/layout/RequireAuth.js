@@ -2,6 +2,7 @@ import { useLocation, Navigate, Outlet, useNavigation } from 'react-router-dom';
 
 import { useKeycloak } from '@react-keycloak/web';
 import Header from '../components/header';
+import Footer from '../components/footer';
 
 const RequireAuth = () => {
   const { keycloak } = useKeycloak();
@@ -21,7 +22,7 @@ const RequireAuth = () => {
           <Navigate to="/" state={{ from: location }} replace />
         )}
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

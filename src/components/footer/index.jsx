@@ -1,46 +1,67 @@
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/image/logos/logo.png';
+
 import payments from '../../assets/image/logos/payment.png';
 
 const Footer = () => {
   return (
     <footer className="m-[50px]">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md: gap-[50px]">
-        <div className="flex flex-col gap-3 ">
-          <h2 className="text-xl text-primary">Categories</h2>
-          <span>Women</span>
-          <span>Men</span>
-          <span>Shoes</span>
-          <span>Accessories</span>
-          <span>New Arrivals</span>
+      <div className="grid grid-cols-1 md:grid-cols-3 md:gap-[50px]">
+        <div className="flex md:justify-start justify-center gap-3 ">
+          <div className="w-[70px] text-center md:text-lert text-xl text-primary">
+            <Link to="/">
+              <img src={logo} alt="Logo" />
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-3 ">
+        <div className="flex flex-col gap-1 text-sm ">
           <h2 className="text-xl text-primary">Links</h2>
-          <span>FAQ</span>
-          <span>Pages</span>
-          <span>Stores</span>
-          <span>Compare</span>
-          <span>Cookies</span>
+          <Link to="/pendiente">
+            <span className="text-sm ">Preguntas Frecuentes</span>
+          </Link>
+          <Link to="/pendiente">
+            <span className="">Tarifas de Envío y Políticas</span>
+          </Link>
+          <Link to="/pendiente">
+            <span className="">Términos y condiciones</span>
+          </Link>
         </div>
         <div className="flex flex-col gap-3 ">
-          <h2 className="text-xl text-primary">About</h2>
-          <span>
-            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit
-            amet conse ctetur adipisicing elit, seddo eiusmod tempor incididunt
-            ut labore etdolore.
-          </span>
-        </div>
-        <div className="flex flex-col gap-3 ">
-          <h2 className="text-xl text-primary">Contact</h2>
-          <span>
-            Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit
-            amet conse ctetur adipisicing elit, seddo eiusmod tempor incididunt
-            ut labore etdolore.
-          </span>
+          <div className="h-full flex justify-center items-center">
+            <div className="flex justify-center items-center text-2xl space-x-4">
+              <a
+                className="text-inherit transition duration-500 hover:text-primary scale-115"
+                href="https://www.linkedin.com/in/youssef-sabbagh/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaLinkedin />
+              </a>
+              <a
+                className="text-inherit transition duration-500 hover:text-primary scale-115"
+                href="https://github.com/YoussefSabbagh"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaGithub />
+              </a>
+              <a
+                className="text-inherit transition duration-500 hover:text-primary scale-115"
+                href="https://twitter.com/TaguaraDigital"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <FaTwitter />
+              </a>
+            </div>
+          </div>{' '}
         </div>
       </div>
-      <div className="flex flex-col md:flex-row items-center justify-between mt-[50px]">
+
+      <div className="mt-5 border-t-2 border-darkGray"></div>
+
+      <div className="flex flex-col md:flex-row items-center justify-between ">
         <div className="flex items-center">
           <span className="logo">Youssef Sabbagh</span>
           <span className="text-sm">© Copyright 2023. All Rights Reserved</span>
