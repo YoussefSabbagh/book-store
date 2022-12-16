@@ -25,19 +25,27 @@ const Profile = () => {
         <h1 className="text-center mb-8 text-4xl"> Datos del Usuario</h1>
         <div className="mb-8 flex">
           <div className="mr-4">
-            <img src={keycloak.tokenParsed.picture} alt="avatar" />
+            <img
+              src={keycloak.tokenParsed.picture}
+              alt={keycloak.tokenParsed.given_name}
+            />
           </div>
           <div>
             <p>First Name: {keycloak.tokenParsed.given_name}</p>
             <p>Last Name: {keycloak.tokenParsed.family_name}</p>
           </div>
         </div>
-        <p>Email: {keycloak.tokenParsed.email}</p>
-        <p>Auth: {keycloak.tokenParsed.auth_time}</p>
+        <hr />
+        <hr />
+        <p className="mt-3">
+          <span className="font-semibold">Email:</span>{' '}
+          {keycloak.tokenParsed.email}
+        </p>
+        <p className="mb-3">Auth: {keycloak.tokenParsed.auth_time}</p>
+        <hr />
+        <hr />
 
-        <hr />
-        <hr />
-        <p className="font-bold"> Roles: </p>
+        <p className="font-bold mt-3"> Roles: </p>
         <ul className="flex flex-col space-x-2">
           {keycloak.tokenParsed.realm_access.roles.map((rol, i) => {
             return <li key={i}> {rol}</li>;

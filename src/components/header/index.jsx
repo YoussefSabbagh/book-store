@@ -137,7 +137,7 @@ const Header = () => {
                 <div className="h-8 w-8">
                   <img
                     className="w-full h-full rounded-full"
-                    src="https://lh3.googleusercontent.com/a/AEdFTp7DfU-a9BJHvp5n1h09gzHBpm42xLBwRP8FL08O=s96-c"
+                    src={keycloak.tokenParsed.picture}
                     alt={keycloak.tokenParsed.given_name}
                   />
                 </div>
