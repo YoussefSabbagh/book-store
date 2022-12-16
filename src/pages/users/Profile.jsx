@@ -7,7 +7,7 @@ const Profile = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative p-8 h-[calc(100vh-80px)] bg-indigo-200">
+    <section className="relative p-8 h-[calc(100vh-80px)] bg-[#E3E6E9]">
       <div className="absolute top-0 left-20 flex">
         <button
           type="button"
