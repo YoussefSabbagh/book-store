@@ -27,18 +27,12 @@ export const router = createBrowserRouter([
       { index: true, element: <Home />, loader: loaderBooks },
       { path: '/books', element: <Books />, loader: loaderNewBooks },
       { path: '/books/:id', element: <BookDetail />, loader: loaderBookDetail },
+      { path: '/contact', element: <Contact /> },
     ],
-  },
-  {
-    path: '/',
-    element: <RequireAuth />,
-    errorElement: <NotFound />,
-    children: [{ path: '/contact', element: <Contact /> }],
   },
   {
     path: '/payment',
     element: <RequireAuth />,
-    errorElement: <NotFound />,
     children: [{ path: '/payment', element: <PaymentPage /> }],
   },
   {

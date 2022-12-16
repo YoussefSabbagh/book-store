@@ -16,14 +16,20 @@ const NotFound = () => {
     <>
       <Header />
       <section className="flex flex-col justity-center items-center">
-        <div className="w-screen-md bg-blue-200 p-10 rounded-xl card content">
-          <h1 className="text-2xl">404</h1>
+        <div className="w-screen-md bg-rose-200 p-10 rounded-xl card content">
+          <h1 className="text-2xl">400 Algo Malo ha pasado</h1>
           <h2 className="text-xl">Ooops! That page cannot be found :( </h2>
           <p>
             {error.status} - {error.statusText}
           </p>
           <p>
-            Redirecting to the <Link to="/">Homepage</Link>
+            Redirecting to the{' '}
+            <Link
+              to="/"
+              className="bg-white p-2 hover:cursor-pointer rounded-md"
+            >
+              Homepage
+            </Link>
           </p>
         </div>
       </section>
