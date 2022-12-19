@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { useKeycloak } from '@react-keycloak/web';
 import { useSelector } from 'react-redux';
+import { useKeycloak } from '@react-keycloak/web';
 
 import { FaBars, FaShoppingCart, FaTimes } from 'react-icons/fa';
 
@@ -10,9 +10,21 @@ import { selectTotalQTY } from '../../features/CartSlice';
 
 const Header = () => {
   const totalQTY = useSelector(selectTotalQTY);
+  const [showMobileMenu, SetShowMobileMenu] = useState(false);
 
   const { keycloak } = useKeycloak();
-  const [showMobileMenu, SetShowMobileMenu] = useState(false);
+
+  const user = keycloak?.idTokenParsed?.given_name || null;
+
+  const handleLogout = async () => {
+    localStorage.removeItem('token');
+    sessionStorage.removeItem('cart');
+    await keycloak.logout();
+  };
+
+  const handleLogin = async () => {
+    await keycloak.login();
+  };
 
   const handleShowToggleMenu = () => {
     SetShowMobileMenu(!showMobileMenu);
@@ -80,7 +92,7 @@ const Header = () => {
               </NavLink>
             </li>
 
-            {!keycloak.authenticated && (
+            {!user && (
               <li
                 className="text-center mt-8 md:mt-0 text-3xl md:text-base "
                 onClick={handleShowToggleMenu}
@@ -88,14 +100,14 @@ const Header = () => {
                 <button
                   type="button"
                   className="text-darkBlue hover:text-primary uppercase"
-                  onClick={() => keycloak.login()}
+                  onClick={handleLogin}
                 >
                   Ingresar
                 </button>
               </li>
             )}
 
-            {!!keycloak.authenticated && (
+            {!!user && (
               <li
                 className="text-center mt-8 md:mt-0 text-3xl md:text-base "
                 onClick={handleShowToggleMenu}
@@ -103,7 +115,7 @@ const Header = () => {
                 <button
                   type="button"
                   className="text-darkBlue hover:text-primary uppercase"
-                  onClick={() => keycloak.logout()}
+                  onClick={handleLogout}
                 >
                   Salir
                 </button>
@@ -114,7 +126,7 @@ const Header = () => {
       </div>
 
       <div className="flex justify-between items-center">
-        {!!keycloak.authenticated && (
+        {!!user && (
           <div className="flex items-center mx-4 md:mr-0">
             <div className="flex justify-between items-center space-x-5  text-[#777] cursor-pointer">
               <div className="relative">

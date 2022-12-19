@@ -1,9 +1,7 @@
 import { Link } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
 
 import AddToCart from '../AddToCart';
 const BookCard = ({ book }) => {
-  console.log(book);
   return (
     <article
       className={`relative grid items-center justify-items-center rounded-xl py-2 px-2 transition-all duration-700 ease-in-out w-full hover:scale-105 border-4 border-primary`}
