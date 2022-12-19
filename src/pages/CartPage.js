@@ -106,16 +106,18 @@ const Cart = () => {
               <p className="">SubTotal</p>
               <p className="">${totalAmount.toFixed(2)}</p>
             </div>
-            <Link to="/payment">
-              <div className="grid items-center gap-2">
-                <button
-                  type="button"
-                  className="button-theme bg-darkBlue text-white mb-8"
-                >
-                  Pagar
-                </button>
-              </div>
-            </Link>
+            {totalAmount > 0 && (
+              <Link to="/payment">
+                <div className="grid items-center gap-2">
+                  <button
+                    type="button"
+                    className="button-theme bg-darkBlue text-white mb-8 di"
+                  >
+                    Pagar
+                  </button>
+                </div>
+              </Link>
+            )}
           </div>
         </div>
       </div>

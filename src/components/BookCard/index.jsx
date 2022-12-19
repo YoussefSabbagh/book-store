@@ -3,6 +3,7 @@ import { FaStar } from 'react-icons/fa';
 
 import AddToCart from '../AddToCart';
 const BookCard = ({ book }) => {
+  console.log(book);
   return (
     <article
       className={`relative grid items-center justify-items-center rounded-xl py-2 px-2 transition-all duration-700 ease-in-out w-full hover:scale-105 border-4 border-primary`}
@@ -18,22 +19,17 @@ const BookCard = ({ book }) => {
         <h2 className="font-bold">{book.title}</h2>
         <h2 className="">{book.subtitle}</h2>
         <div className=" flex items-center justify-between w-28 my-2">
+          <span className="font-semibold mr-2">Precio:</span>
           <p className="flex items-center bg-white/80  px-1 rounded blur-effect-theme text-black">
             {book.price}
           </p>
-          <div className="flex items-center gap-1">
-            <FaStar className="icon-style text-amber-400" />
-            <p className="md:text-sm font-normal text-darkBlue">
-              {book.rating}
-            </p>
-          </div>
         </div>
         <div className="flex items-center gap-3">
           <AddToCart book={book} />
           <Link to={`/books/${book.isbn13}`}>
             <button
               type="button"
-              className="bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black"
+              className="bg-white/90 blur-effect-theme button-theme px-3 py-2 shadow shadow-sky-200 text-sm text-black font-semibold"
             >
               Detalles
             </button>

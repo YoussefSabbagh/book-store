@@ -13,7 +13,7 @@ const AddToCart = ({ book }) => {
   const onAddToCart = () => {
     if (!keycloak.authenticated) {
       let confirmation = window.confirm(
-        `Para Agregar al Carrito es debe estar autenticado. Quiere ingresar?`
+        `Para agregar al Carrito se debe estar autenticado. Quiere ingresar?`
       );
       if (confirmation) {
         keycloak.login();

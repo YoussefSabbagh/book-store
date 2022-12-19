@@ -4,7 +4,9 @@ import CartFinder from '../services/cartApi';
 
 const initialState = {
   cartState: false,
-  cartItems: [],
+  cartItems: sessionStorage.getItem('cart')
+    ? JSON.parse(sessionStorage.getItem('cart'))
+    : [],
   cartTotalAmount: 0,
   cartTotalQantity: 0,
 };
